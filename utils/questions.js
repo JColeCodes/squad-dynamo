@@ -218,7 +218,7 @@ const promptProfiles = () => {
         }
         // Else (Exit)
         else {
-            return;
+            return { exit: true };
         }
     })
     .then(profileData => {
@@ -234,7 +234,7 @@ const promptProfiles = () => {
                 this.engineers.push(engineer);
             };
             profiles.newEngineer();
-            promptProfiles(); // Call function again
+            return promptProfiles(); // Call function again
         }
         // Create new Intern
         else if (profileData.internName) {
@@ -248,14 +248,14 @@ const promptProfiles = () => {
                 this.interns.push(intern);
             };
             profiles.newIntern();
-            promptProfiles(); // Call function again
+            return promptProfiles(); // Call function again
         }
         // Else (Exit)
         else {
             console.log('Thank you. Your webpage is being generated.');
-            return;
+            return profiles;
         }
     });
 }
 
-module.exports = { profiles, promptManager, promptProfiles };
+module.exports = { promptManager, promptProfiles };
